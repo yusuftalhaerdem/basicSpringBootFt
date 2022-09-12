@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    #url: jdbc:h2:mem:memDb;DB_CLOSE_DELAY=-1 # = or :, i dont know.
+    url: jdbc:h2:file:./h2-database/demo
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    console.enabled: true
+    console.path: /h2-console
+    console.settings.trace: false
+    spring.h2.console.settings.web-allow-others: false
+    hibernate.ddl-auto: update
+    #hibernate.ddl-auto: none
+    properties:
+      hibernate.format_sql: true
+      hibernate:
+        #show_sql: true
+  sql:
+    init:
+      # since i didnt put db folders right below resources folder but resources/db, this is needed
+      data-locations: classpath:db/data.sql
+      schema-locations: classpath:db/schema.sql
